@@ -5,22 +5,24 @@ import { BookItem } from './BookItem'
 import { booksStartLoading } from '../state/actions/books'
 
 export const BooksGrid = () => {
-  const dispatch = useDispatch()
-  const { books } = useSelector((state) => state.library)
+	const dispatch = useDispatch()
+	const { books } = useSelector((state) => state.library)
 
-  useEffect(() => {
-    dispatch(booksStartLoading())
-  }, [dispatch])
+	useEffect(() => {
+		dispatch(booksStartLoading())
+	}, [dispatch])
 
-  return (
-    <div className='asdf'>
-      {books.map((book) => (
-        <BookItem
-          key={book._id}
-          {...book}
-          className='rounded overflow-hidden'
-        />
-      ))}
-    </div>
-  )
+	return (
+		<>
+			<div className='grid gap-1 grid-cols-2 md:grid-cols-5'>
+				{books.map((book) => (
+					<BookItem
+						key={book._id}
+						className='rounded overflow-hidden'
+						{...book}
+					/>
+				))}
+			</div>
+		</>
+	)
 }
