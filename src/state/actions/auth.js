@@ -43,6 +43,6 @@ export const startRegister = (username, email, password) => {
 }
 
 const login = (user) => ({
-	type: types.authLogin,
+	type: types.AUTH_SIGNIN,
 	payload: user
 });

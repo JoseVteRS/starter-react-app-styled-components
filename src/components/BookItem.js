@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setBookActive } from '../state/actions/books'
 import Plus from '../icons/Plus'
 import styled from 'styled-components'
+import { addBookToList } from '../state/actions/list'
 
 const BookItemInfo = styled.div`
 	background: linear-gradient(to top, rgba(0,0,0,.95) 30%, rgba(0,0,0,0.3) 70%);
@@ -52,6 +53,7 @@ export const BookItem = ({ _id, title, coverUrl, author, genre }) => {
 	}
 	const handleAddMovie = () => {
 		console.log('Añadir pelicul a favoritos', { title, author, genre, username })
+		dispatch(addBookToList())
 	}
 
 

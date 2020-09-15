@@ -7,8 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 import { startLogin } from '../state/actions/auth'
 import { Heading } from '../Styled-Components/Heading'
-
-
+import { hideModalAction } from '../state/actions/ui'
 
 const StyledHeaderSingIn = styled.header`
 	align-items: center;
@@ -30,18 +29,19 @@ export const SingIn = ({ onClick }) => {
 		email: '',
 		password: ''
 	})
-
 	const { email, password } = formSignInValues
-
 	const isButtonDisabled = !email.length || !password.length
 
 	const handleSignIn = (e) => {
 		e.preventDefault()
 		dispatch(startLogin(email, password))
+		dispatch(hideModalAction())
 	}
 
+
+
 	return (
-		<div className="bg-white rounded p-5 text-gray-800 w-full md:w-1/3 ">
+		<div className="bg-white rounded p-5 text-gray-800 w-full md:w-1/3">
 			<div style={buttonStyles}>
 				<Close onClick={onClick} width={24} height={24} fill='#333' />
 			</div>
@@ -59,9 +59,7 @@ export const SingIn = ({ onClick }) => {
 				GOOGLE
         	</Button>
 
-			<p className='text-xl text-gray-300 font-bold text-center my-5'>
-				- o -
-       		</p>
+			<p className='text-xl text-gray-300 font-bold text-center my-5'> - o - </p>
 
 			<form onSubmit={handleSignIn}>
 				<label className='text-lg text-gray-700 font-bold' >
@@ -97,6 +95,6 @@ export const SingIn = ({ onClick }) => {
 					Iniciar sesión
           		</Button>
 			</form>
-		</div >
+		</div>
 	)
 }

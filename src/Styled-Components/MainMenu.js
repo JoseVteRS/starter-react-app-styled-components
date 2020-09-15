@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { Modal } from './Modal'
 import { SingIn } from '../pages/SingIn'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import User from '../icons/User'
+import { showModalAction, hideModalAction } from '../state/actions/ui'
 
 export const MenuContainer = styled.div.attrs({
 	className: 'flex items-center',
@@ -48,16 +49,17 @@ export const MenuItem = styled.li.attrs({
 `
 
 export const MainMenu = ({ open }) => {
-	const [show, setShow] = useState(false)
+	const { showModal } = useSelector(state => state.ui)
 	const { username } = useSelector((state) => state.auth);
+	const dispatch = useDispatch()
 
 	const handleShowModal = () => {
-		console.log('Mostrar modal')
-		setShow(true)
+		dispatch(showModalAction())
 	}
 
 	const handleCloseModal = () => {
-		setShow(false)
+		console.log('Cerrar modal')
+		dispatch(hideModalAction())
 	}
 	return (
 		<>
@@ -98,8 +100,8 @@ export const MainMenu = ({ open }) => {
 
 			</MenuContainer>
 
-			{show &&
-				<Modal show={show}>
+			{showModal &&
+				<Modal show={showModal}>
 					<SingIn onClick={handleCloseModal} />
 				</Modal>}
 

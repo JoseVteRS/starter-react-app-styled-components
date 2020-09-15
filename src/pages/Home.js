@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { BookItem } from '../components/BookItem'
 import { searchStartBooksAll, searchClear } from '../state/actions/books'
 import { useForm } from '../hooks/useForm'
+import { Footer } from '../components/Footer'
 
 const sectionStyle = {
 	backgroundImage:
@@ -127,6 +128,8 @@ export const Home = () => {
 					<BooksGrid />
 				</div>
 			</section>
+
+			<Footer />
 		</>
 	)
 }

@@ -7,7 +7,6 @@ export const booksStartLoading = () => {
 	return async (dispatch) => {
 		try {
 			await axios.get(`${url}/books?l=10&p=1`).then((books) => {
-				console.log(books)
 				dispatch(bookLoaded(books))
 			})
 		} catch (error) {
@@ -20,7 +19,6 @@ export const searchStartBooksAll = (params) => {
 	return async (dispatch) => {
 		try {
 			await axios.get(`${url}/search/colection/books/${params}`).then((books) => {
-				console.log(books)
 				dispatch(searchBookLoaded(books))
 			})
 
@@ -32,22 +30,22 @@ export const searchStartBooksAll = (params) => {
 
 
 export const searchClear = () => ({
-	type: types.searchClear
+	type: types.BOOK_CLEAR_SEARCH
 })
 
 const bookLoaded = (books) => ({
-	type: types.bookLoaded,
+	type: types.GET_BOOKS,
 	payload: books
 })
 
 
 const searchBookLoaded = (search) => ({
-	type: types.searchBookLoaded,
+	type: types.GET_BOOKS_SEARCH,
 	payload: search
 })
 
 export const setBookActive = (id, book) => ({
-	type: types.bookSetActive,
+	type: types.BOOK_SET_ACTIVE,
 	payload: id,
 	...book,
 })
